@@ -1,0 +1,18 @@
+server:
+  port: 9191
+  
+spring:  application:    name: secured-api-gateway
+  cloud:
+    gateway:            discovery:        locator:          lower-case-service-id: true
+eureka:
+  client:
+    service-url:
+      defaultzone: http://eureka-0.eureka.default.svc.cluster.local:8761/eureka 
+  instance:
+    instance-id: ${spring.application.name}:${random.uuid}
+    prefer-ip-address: true
+    hostname: eureka-0   
+    
+jwt:
+  secret:
+    key: c2VjcmV0a2V5       

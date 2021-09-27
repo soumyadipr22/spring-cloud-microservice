@@ -1,0 +1,19 @@
+server:
+  port: 9010
+
+spring:  application:    name: authentication-service  
+      
+eureka:
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    service-url:
+      defaultzone: http://eureka-0.eureka.default.svc.cluster.local:8761/eureka 
+  instance:
+    prefer-ip-address: true
+    hostname: eureka-0
+    instance-id: ${spring.application.name}:${random.uuid}    
+    
+jwt:
+  secret:
+    key: c2VjcmV0a2V5    

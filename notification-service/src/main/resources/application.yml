@@ -1,0 +1,23 @@
+server:
+  port: 9050
+
+spring:
+  application:
+    name: notification-service 
+  activemq:
+    broker-url: tcp://localhost:61616
+    
+order:
+  notification:
+    queue: ORDER.NOTIFICATION.QUEUE    
+
+eureka:
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    service-url:
+      defaultzone: http://eureka-0.eureka.default.svc.cluster.local:8761/eureka 
+  instance:
+    prefer-ip-address: true
+    hostname: eureka-0
+    instance-id: ${spring.application.name}:${random.uuid}      
