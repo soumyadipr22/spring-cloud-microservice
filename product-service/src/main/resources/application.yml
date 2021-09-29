@@ -2,6 +2,11 @@ server:
   port: 9020
 
 spring:  application:    name: product-service 
+  cloud:    
+    kubernetes:
+      enabled: true
+      discovery:
+        enabled: true   
   h2:
     console:
       enabled: true
@@ -10,11 +15,11 @@ spring:  application:    name: product-service
 
 eureka:
   client:
-    register-with-eureka: true
-    fetch-registry: true
+    enabled: false
+    register-with-eureka: false
+    fetch-registry: false
     service-url:
-      defaultzone: http://eureka-0.eureka.default.svc.cluster.local:8761/eureka 
+      defaultzone: http://localhost:8761/eureka 
   instance:
-    prefer-ip-address: true
-    hostname: eureka-0
+    hostname: localhost
     instance-id: ${spring.application.name}:${random.uuid}    
