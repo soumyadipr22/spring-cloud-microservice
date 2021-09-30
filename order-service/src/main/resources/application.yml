@@ -5,7 +5,7 @@ spring:  application:    name: order-service
   zipkin:
     base-url: http://35.184.144.97:9411  
   activemq:
-    broker-url: tcp://35.202.59.151:61616  cloud:    loadbalancer:        enabled: false
+    broker-url: tcp://35.202.59.151:61616  cloud:    loadbalancer:        enabled: true
     kubernetes:
       enabled: true
       discovery:
