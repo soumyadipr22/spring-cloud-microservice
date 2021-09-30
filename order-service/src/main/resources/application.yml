@@ -3,7 +3,11 @@ server:
 
 spring:  application:    name: order-service 
   activemq:
-    broker-url: tcp://localhost:61616     cloud:    loadbalancer:      enabled: true
+    broker-url: tcp://35.202.59.151:61616  cloud:    loadbalancer:        enabled: false
+    kubernetes:
+      enabled: true
+      discovery:
+        enabled: true  
   h2:
     console:
       enabled: true
@@ -16,13 +20,13 @@ order:
 
 eureka:
   client:
-    register-with-eureka: true
-    fetch-registry: true
+    enabled: false
+    register-with-eureka: false
+    fetch-registry: false
     service-url:
-      defaultzone: http://eureka-0.eureka.default.svc.cluster.local:8761/eureka 
+      defaultzone: http://localhost:8761/eureka 
   instance:
-    hostname: eureka-0
-    prefer-ip-address: true
+    hostname: localhost
     instance-id: ${spring.application.name}:${random.uuid}    
     
 resilience4j:  circuitbreaker:    instances:      inventoryService:
