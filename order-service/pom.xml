@@ -10,7 +10,7 @@
 	</parent>
 	<groupId>org.spring.microservice</groupId>
 	<artifactId>order-service</artifactId>
-	<version>0.0.4.RELEASE</version>
+	<version>0.0.5.RELEASE</version>
 	<name>order-service</name>
 	<description>order-service</description>
 	<properties>
@@ -78,7 +78,8 @@
 		<dependency>
 			<groupId>org.springframework.cloud</groupId>
 			<artifactId>spring-cloud-starter-sleuth</artifactId>
-		</dependency><dependency>
+		</dependency>
+		<dependency>
 		    <groupId>org.springframework.cloud</groupId>
 		    <artifactId>spring-cloud-starter-kubernetes</artifactId>
 		    <version>1.1.10.RELEASE</version>
