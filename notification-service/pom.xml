@@ -10,7 +10,7 @@
 	</parent>
 	<groupId>org.spring.microservice</groupId>
 	<artifactId>notification-service</artifactId>
-	<version>0.0.1</version>
+	<version>0.0.1.RELEASE</version>
 	<name>notification-service</name>
 	<description>notification-service</description>
 	<properties>
@@ -53,6 +53,11 @@
 		<dependency>
 			<groupId>org.springframework.cloud</groupId>
 			<artifactId>spring-cloud-starter-sleuth</artifactId>
+		</dependency>
+		<dependency>
+		    <groupId>org.springframework.cloud</groupId>
+		    <artifactId>spring-cloud-starter-kubernetes</artifactId>
+		    <version>1.1.10.RELEASE</version>
 		</dependency>
 	</dependencies>
 	<dependencyManagement>

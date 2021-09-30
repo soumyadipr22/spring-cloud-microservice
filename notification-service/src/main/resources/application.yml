@@ -4,8 +4,15 @@ server:
 spring:
   application:
     name: notification-service 
+  zipkin:
+    base-url: http://35.184.144.97:9411  
   activemq:
-    broker-url: tcp://localhost:61616
+    broker-url: tcp://35.202.59.151:61616
+  cloud:    
+    kubernetes:
+      enabled: true
+      discovery:
+        enabled: true  
     
 order:
   notification:
@@ -13,11 +20,11 @@ order:
 
 eureka:
   client:
-    register-with-eureka: true
-    fetch-registry: true
+    enabled: false
+    register-with-eureka: false
+    fetch-registry: false
     service-url:
       defaultzone: http://eureka-0.eureka.default.svc.cluster.local:8761/eureka 
   instance:
-    prefer-ip-address: true
-    hostname: eureka-0
+    hostname: localhost
     instance-id: ${spring.application.name}:${random.uuid}      
