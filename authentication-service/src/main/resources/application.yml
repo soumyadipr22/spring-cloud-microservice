@@ -3,7 +3,8 @@ server:
 
 spring:  application:    name: authentication-service
   cloud:        kubernetes:      enabled: true
-      discovery:        enabled: true  
+      discovery:        enabled: true
+  zipkin:    base-url: http://35.184.144.97:9411        
 eureka:
   client:
     enabled: false
