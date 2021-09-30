@@ -3,16 +3,21 @@ server:
   
 spring:  application:    name: secured-api-gateway
   cloud:
+    kubernetes:        enabled: true
+        discovery:
+          enabled: true 
     gateway:            discovery:        locator:          lower-case-service-id: true
 eureka:
   client:
+    enabled: false
+    register-with-eureka: false
+    fetch-registry: false
     service-url:
-      defaultzone: http://eureka-0.eureka.default.svc.cluster.local:8761/eureka 
+      defaultzone: http://localhost:8761/eureka 
   instance:
-    instance-id: ${spring.application.name}:${random.uuid}
-    prefer-ip-address: true
-    hostname: eureka-0   
+    hostname: localhost
+    instance-id: ${spring.application.name}:${random.uuid}  
     
 jwt:
   secret:
-    key: c2VjcmV0a2V5       
+    key: c2VjcmV0a2V5
