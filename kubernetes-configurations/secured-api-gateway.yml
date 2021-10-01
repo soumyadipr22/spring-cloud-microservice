@@ -1,0 +1,43 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: secured-api-gateway
+  labels:
+    app: secured-api-gateway
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: secured-api-gateway
+  strategy:
+    rollingUpdate:
+      maxUnavailable: 25%
+      maxSurge: 25%
+  template:
+    metadata:
+      labels:
+        app: secured-api-gateway
+    spec:
+      containers:
+      - name: secured-api-gateway
+        image: soumyadipr/secured-api-gateway:0.0.1.RELEASE
+        imagePullPolicy: IfNotPresent
+        ports:
+          - containerPort: 9191
+      serviceAccount: spring-cloud-microservice
+      restartPolicy: Always
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: secured-api-gateway
+  labels:
+    app: secured-api-gateway
+spec:
+  selector:
+    app: secured-api-gateway
+  type: LoadBalancer
+  ports:
+  - port: 9191
+    targetPort: 9191
+    protocol: TCP

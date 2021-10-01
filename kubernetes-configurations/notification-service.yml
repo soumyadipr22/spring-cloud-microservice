@@ -1,0 +1,43 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: notification-service
+  labels:
+    app: notification-service
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: notification-service
+  strategy:
+    rollingUpdate:
+      maxSurge: 25%
+      maxUnavailable: 25%
+  template:
+    metadata:
+      labels:
+        app: notification-service
+    spec:
+      containers:
+      - name: notification-service
+        image: soumyadipr/notification-service:0.0.1.RELEASE
+        imagePullPolicy: IfNotPresent
+        ports:
+          - containerPort: 9050
+      serviceAccount: spring-cloud-microservice       
+      restartPolicy: Always  
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: notification-service
+  labels:
+    app: notification-service
+spec:
+  selector:
+    app: notification-service
+  type: ClusterIP  
+  ports:
+  - port: 9050
+    targetPort: 9050
+    protocol: TCP
